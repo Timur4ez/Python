@@ -1,0 +1,70 @@
+# Задайте список из нескольких чисел. Напишите программу, которая найдёт сумму элементов списка, стоящих на нечётной позиции.
+# Пример:
+# [2, 3, 5, 9, 3] -> на нечётных позициях элементы 3 и 9, ответ: 12
+
+list = [2, 3, 5, 9, 3]
+print(list)
+sum = 0
+for i in range(len(list)):
+    if i %  2 != 0:
+        sum = sum + list[i]
+print(f'Sum of elements in odd position {list} is', sum)
+
+# Напишите программу, которая найдёт произведение пар чисел списка. Парой считаем первый и последний элемент, второй и предпоследний и т.д.
+# Пример:
+# [2, 3, 4, 5, 6] => [12, 15, 16];
+# [2, 3, 5, 6] => [12, 15]
+
+list = [2,3,4,5,6]
+print(list,'==>')
+def mult(list):
+    mult = []
+    for i in range((len(list)+1)//2):
+        mult.append(list[i]*list[len(list)-1-i])
+    return mult
+print(mult(list))
+
+# Задайте список из вещественных чисел. 
+# Напишите программу, которая найдёт разницу между максимальным и минимальным значением дробной части элементов.
+# Пример:
+# [1.1, 1.2, 3.1, 5, 10.01] => 0.19
+
+list = [1.1, 1.2, 3.1, 5, 10.01]
+print(list)
+def dif(list):
+    dif_max_min =[]
+    for i in range(len(list)):
+        dif_max_min.append(list[i]%1)
+    return max(dif_max_min) - min(dif_max_min)
+print(round(dif(list),2))
+
+# Напишите программу, которая будет преобразовывать десятичное число в двоичное.
+# Пример:
+# - 45 -> 101101
+# - 3 -> 11
+# - 2 -> 10
+
+a = int(input('Enter the number: '))
+b = ''
+while a > 0:
+    b = str(a % 2)+b
+    a = a//2
+print(b)
+
+# Задайте число. Составьте список чисел Фибоначчи, в том числе для отрицательных индексов.
+# Пример:
+# - для k = 8 список будет выглядеть так: 
+# [-21 ,13, -8, 5, −3, 2, −1, 1, 0, 1, 1, 2, 3, 5, 8, 13, 21] [Негафибоначчи]
+
+a = int(input('Enter the number: '))
+print(a)
+negofibonacci = [1,-1]
+fibonacci = [1,1]
+for i in range(2,a):
+    list = fibonacci[i-1]+fibonacci[i-2]
+    fibonacci.append(list)
+    list_nego = negofibonacci[i-2] - negofibonacci[i-1]
+    negofibonacci.append(list_nego)
+negofibonacci.reverse()
+negofibonacci.append(0)
+print(f' for a = {a} =>{negofibonacci+fibonacci}')
